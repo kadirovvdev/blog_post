@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .profile-image {
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group input[type="file"] {
+            padding: 3px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" value="{{ user.username }}">
+            </div>
+            <div class="form-group">
+                <label for="id_first_name">Full Name</label>
+                <input type="text" name="first_name" id="id_first_name" value="{{ user.first_name }}">
+            </div>
+            <div class="form-group">
+                <label for="id_last_name">Last Name</label>
+                <input type="text" name="last_name" id="id_last_name" value="{{ user.last_name }}">
+            </div>
+            <div class="form-group">
+                <label for="id_email">Email</label>
+                <input type="email" name="email" id="id_email" value="{{ user.email }}">
+            </div>
+            <div class="form-group">
+                <label for="id_image">Profile Image</label>
+                <input type="file" name="image" id="id_image">
+                {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="Profile Image" class="profile-image">
+                {% endif %}
+            </div>
+            <button type="submit" class="btn">Save Changes</button>
+            <button style="background-color: orange; padding: 5px 15px; border: none; border-radius: 5px;"><a style="color: white; text-decoration: none;" href="{% url 'landing_page' %}" >Back</a></button>
+
+        </form>
+    </div>
+</body>
+</html>

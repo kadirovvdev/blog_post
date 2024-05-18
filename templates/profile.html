@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #abc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 50px;
+            object-fit: cover;
+        }
+        .profile-info p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ user.username }}'s Profile</h1>
+        {% if user.image %}
+            <img src="{{ user.image.url }}" alt="Profile Image" class="profile-image">
+        {% endif %}
+        <div class="profile-info">
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <button style="background-color: orange; padding: 5px 15px; border: none; border-radius: 5px;"><a style="color: white; text-decoration: none;" href="{% url 'landing_page' %}" >Back</a></button>
+
+        </div>
+    </div>
+</body>
+</html>

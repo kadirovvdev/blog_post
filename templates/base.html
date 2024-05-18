@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Asosiy sahifa uslubi */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 40px;
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+        a {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Our Website</h1>
+    <p>This is the main page of our website. To get started, please register an account.</p>
+    <nav>
+        <a href="{% url 'user:register' %}">Go to Register Page</a><br><br><br>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'post-list' %}">Post List</a><br><br><br>
+            <a href="{% url 'user:profile' user.pk %}">Profile</a><br><br><br>
+            <a href="{% url 'user:profile-update' user.pk %}">Profile Update</a><br><br><br>
+            <a href="{% url 'user:logout' %}">Logout</a>
+
+        {% else %}
+            <a href="{% url 'user:login' %}">Login</a>
+        {% endif %}
+    </nav>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .post {
+            background: #fff;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post:hover {
+            transform: scale(1.05);
+        }
+
+        .post h2 {
+            color: #333;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .post-details {
+            color: #888;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Post List</h1>
+
+        <a href="{% url 'post-create' %}" class="back-link">Create a New Post</a>
+
+
+
+
+
+        {% for post in posts %}
+            <div class="post">
+                <h2>{{ post.title }}</h2>
+                <p class="post-details">Date: {{ post.date }}</p>
+                <p class="post-details">Author: {{ post.author }}</p>
+                <a href="{% url 'post-detail' post.pk %}" class="back-link">Read more</a>
+            </div>
+        {% endfor %}
+
+        <a href="/" class="back-link">Back to Main Page</a>
+    </div>
+</body>
+</html>
