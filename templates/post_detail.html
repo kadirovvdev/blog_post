@@ -44,15 +44,33 @@
         {% else %}
             <p>No image available</p>
         {% endif %}
-            <p>{{ posts.content }}</p>
+        <p>{{ posts.content }}</p>
         <div class="post-meta">
             <p>Published on: {{ posts.created_at }}</p>
             <p>Author: {{ posts.author }}</p>
+            {% for r in review %}
+                <p>Review: {{ r.comment }}</p>
+                <h4>{{ r.user.username }} | {{ r.star_given }}⭐️</h4>
+                <button style="background-color: red; padding: 5px 15px; border: none; border-radius: 5px;">
+                    <a style="color: white; text-decoration: none;" href="{% url 'review-delete' r.pk %}">Delete</a>
+                </button><br><br>
+                <button style="background-color: blue; padding: 5px 15px; border: none; border-radius: 5px;">
+                    <a style="color: white; text-decoration: none;" href="{% url 'review-update' r.pk %}">Review Update</a>
+                </button><br><br>
+            {% endfor %}
             <div>
-                <button style="background-color: orange; padding: 5px 15px; border: none; border-radius: 5px;"><a style="color: white; text-decoration: none;" href="{% url 'post-list' %}" >Back</a></button>
-                <button style="background-color: green; padding: 5px 15px; border: none; border-radius: 5px;"><a style="color: white; text-decoration: none;" href="{% url 'post-update' posts.pk %}" >Update</a></button>
-                <button style="background-color: red; padding: 5px 15px; border: none; border-radius: 5px;"><a style="color: white; text-decoration: none;" href="{% url 'post-delete' posts.pk %}">Delete</a></button>
-                <button style="background-color: red; padding: 5px 15px; border: none; border-radius: 5px;"><a style="color: white; text-decoration: none;" href="{% url 'add-review' posts.pk %}">Add review</a></button>
+                <button style="background-color: orange; padding: 5px 15px; border: none; border-radius: 5px;">
+                    <a style="color: white; text-decoration: none;" href="{% url 'post-list' %}">Back</a>
+                </button><br><br>
+                <button style="background-color: green; padding: 5px 15px; border: none; border-radius: 5px;">
+                    <a style="color: white; text-decoration: none;" href="{% url 'post-update' posts.pk %}">Update</a>
+                </button>
+                <button style="background-color: red; padding: 5px 15px; border: none; border-radius: 5px;">
+                    <a style="color: white; text-decoration: none;" href="{% url 'post-delete' posts.pk %}">Delete</a>
+                </button>
+                <button style="background-color: red; padding: 5px 15px; border: none; border-radius: 5px;">
+                    <a style="color: white; text-decoration: none;" href="{% url 'add-review' posts.pk %}">Add review</a>
+                </button>
             </div>
         </div>
     </div>
