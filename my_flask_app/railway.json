@@ -1,8 +1,0 @@
-{
-  "build": {
-    "builder": "Nixpacks"
-  },
-  "deploy": {
-    "startCommand": "python app.py"
-  }
-}
