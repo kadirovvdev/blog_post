@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'post',
     'user',
-    'home',
-    'my_flask_app'
+    'home'
+
 
 ]
 
